@@ -1,6 +1,5 @@
 #!/bin/bash
-## EU IP
-BASE_DIR="$( cd "$(dirname "$0")"; cd .. ; pwd -P )"
+BASE_DIR="$( cd "$(dirname "$0")"; pwd -P )"
 
 echo "Using base directory $BASE_DIR"
 
