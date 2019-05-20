@@ -10,7 +10,7 @@ services:''']
 for ix in range (len(broker_urls)):
   broker_url = broker_urls[ix]
   port = 15060 + (ix*2)
-  container = f'''  kafka-boot-broker-{ix}:
+  out_str.append('''  kafka-boot-broker-{ix}:
   image: m7dock/gotunnel:01
   container_name: kafka-boot-broker-{ix}
   ports:
@@ -22,7 +22,6 @@ for ix in range (len(broker_urls)):
   - -listen 
   - :9092 
   - -tunnels 
-  - "0"'''
-  out_str.append(container)
+  - "0"''')
 print ("\n".join(out_str))
     
