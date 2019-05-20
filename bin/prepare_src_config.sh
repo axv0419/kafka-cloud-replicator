@@ -1,7 +1,9 @@
+#!/bin/bash
 ## EU IP
-BASE_DIR=$(cd  $(dirname "$0")/.. ; pwd);
-echo 
+BASE_DIR="$( cd "$(dirname "$0")"; cd .. ; pwd -P )"
+
 echo "Using base directory $BASE_DIR"
+
 . ${BASE_DIR}/setenv.sh
 echo 
 
