@@ -25,7 +25,7 @@ for ix in range (len(broker_urls)):
     - -listen 
     - :9092 
     - -tunnels 
-    - "3"'''.format(port=port,ix=ix,borker_host=broker_host,src_side_tunnel_ip=src_side_tunnel_ip))
+    - "3"'''.format(port=port,ix=ix,broker_host=broker_host,src_side_tunnel_ip=src_side_tunnel_ip))
 
 out_str.append('''  {src_cluster_id}.replicator:
     image: confluentinc/cp-enterprise-replicator-executable:5.2.1
