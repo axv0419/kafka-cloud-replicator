@@ -10,3 +10,4 @@ Kafka clusters provide reliable event ingestion and processing within a cloud re
 1. _Broker visibility_ across cluster.
 2. _Security requirements_
 
+<img src="docs/images/Replicator-02.svg" />
