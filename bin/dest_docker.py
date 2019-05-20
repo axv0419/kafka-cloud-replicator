@@ -27,9 +27,9 @@ for ix in range (len(broker_urls)):
     - -tunnels 
     - "3"'''.format(port=port,ix=ix,broker_host=broker_host,src_side_tunnel_ip=src_side_tunnel_ip))
 
-out_str.append('''  {src_cluster_id}.replicator:
+out_str.append('''  replicator-{src_cluster_id}:
     image: confluentinc/cp-enterprise-replicator-executable:5.2.1
-    container_name: {src_cluster_id}-replicator
+    container_name: replicator-{src_cluster_id}
     networks:
         tunnel_net:
             ipv4_address: 172.28.1.54
