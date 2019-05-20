@@ -42,8 +42,9 @@ out_str.append('''  {src_cluster_id}.replicator:
         max-file: "4"
     volumes:
       - ./config:/etc/replicator
-  cc-cli:
-    image: av/ccloud
+  cclidocker:
+    image: kafka-rep/cclidocker
+    build: ./cclidocker-image
     container_name: ccloud
     networks:
         tunnel_net:
