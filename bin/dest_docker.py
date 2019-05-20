@@ -12,7 +12,7 @@ for ix in range (len(broker_urls)):
     broker_url = broker_urls[ix]
     broker_host ,broker_port=broker_url.split(":")
     port = 15060 + (ix*2)
-    ip_suffix = 10+port
+    ip_suffix = 10+(ix*2)
     out_str.append('''  {broker_host}:
     image: m7dock/gotunnel:01
     container_name: broker-proxy-{ix}
