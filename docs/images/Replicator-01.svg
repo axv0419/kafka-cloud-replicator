@@ -980,11 +980,11 @@
     <g stroke-linecap="butt" font-size="16px" transform="matrix(1,0,0,1,182,-148)" fill="blue" text-rendering="geometricPrecision" font-family="sans-serif" shape-rendering="geometricPrecision" stroke="blue" stroke-miterlimit="1.45">
       <text x="-125.5938" xml:space="preserve" y="185.2852" clip-path="url(#clipPath2)" stroke="none">gcp.europe-west2</text>
       <text x="-116.0146" font-size="12px" y="212.7139" clip-path="url(#clipPath2)" fill="black" stroke="none" xml:space="preserve">Kafka Cluster</text>
-      <text x="-84.3418" font-size="12px" y="253.7139" clip-path="url(#clipPath2)" fill="black" stroke="none" xml:space="preserve">broker-0</text>
-      <text x="-84.3418" font-size="12px" y="303.7139" clip-path="url(#clipPath2)" fill="black" stroke="none" xml:space="preserve">broker-1</text>
-      <text x="-84.3418" font-size="12px" y="353.7139" clip-path="url(#clipPath2)" fill="black" stroke="none" xml:space="preserve">broker-2</text>
-      <text x="-84.3418" font-size="12px" y="403.7139" clip-path="url(#clipPath2)" fill="black" stroke="none" xml:space="preserve">broker-3</text>
-      <text x="-84.3418" font-size="12px" y="449.7139" clip-path="url(#clipPath2)" fill="black" stroke="none" xml:space="preserve">broker-4</text>
+      <text x="-96.3506" font-size="12px" y="253.7139" clip-path="url(#clipPath2)" fill="black" stroke="none" xml:space="preserve">aaa-broker-0</text>
+      <text x="-96.3506" font-size="12px" y="303.7139" clip-path="url(#clipPath2)" fill="black" stroke="none" xml:space="preserve">aaa-broker-1</text>
+      <text x="-96.3506" font-size="12px" y="353.7139" clip-path="url(#clipPath2)" fill="black" stroke="none" xml:space="preserve">aaa-broker-2</text>
+      <text x="-96.3506" font-size="12px" y="403.7139" clip-path="url(#clipPath2)" fill="black" stroke="none" xml:space="preserve">aaa-broker-3</text>
+      <text x="-96.3506" font-size="12px" y="449.7139" clip-path="url(#clipPath2)" fill="black" stroke="none" xml:space="preserve">aaa-broker-4</text>
     </g>
     <g fill="rgb(255,204,153)" text-rendering="geometricPrecision" shape-rendering="geometricPrecision" transform="matrix(1,0,0,1,182,-148)" stroke="rgb(255,204,153)">
       <rect x="309.5" y="194.5" clip-path="url(#clipPath2)" width="131" rx="4" ry="4" height="295" stroke="none"/>
@@ -1025,11 +1025,11 @@
     <g stroke-linecap="butt" font-size="16px" transform="matrix(1,0,0,1,182,-148)" fill="blue" text-rendering="geometricPrecision" font-family="sans-serif" shape-rendering="geometricPrecision" stroke="blue" stroke-miterlimit="1.45">
       <text x="327.8672" xml:space="preserve" y="186.2852" clip-path="url(#clipPath2)" stroke="none">gcp.us-west3</text>
       <text x="320.9854" font-size="12px" y="213.7139" clip-path="url(#clipPath2)" fill="black" stroke="none" xml:space="preserve">Kafka Cluster</text>
-      <text x="352.6582" font-size="12px" y="254.7139" clip-path="url(#clipPath2)" fill="black" stroke="none" xml:space="preserve">broker-0</text>
-      <text x="352.6582" font-size="12px" y="304.7139" clip-path="url(#clipPath2)" fill="black" stroke="none" xml:space="preserve">broker-1</text>
-      <text x="352.6582" font-size="12px" y="354.7139" clip-path="url(#clipPath2)" fill="black" stroke="none" xml:space="preserve">broker-2</text>
-      <text x="352.6582" font-size="12px" y="404.7139" clip-path="url(#clipPath2)" fill="black" stroke="none" xml:space="preserve">broker-3</text>
-      <text x="352.6582" font-size="12px" y="450.7139" clip-path="url(#clipPath2)" fill="black" stroke="none" xml:space="preserve">broker-4</text>
+      <text x="345.6592" font-size="12px" y="254.7139" clip-path="url(#clipPath2)" fill="black" stroke="none" xml:space="preserve">fff-broker-0</text>
+      <text x="345.6592" font-size="12px" y="304.7139" clip-path="url(#clipPath2)" fill="black" stroke="none" xml:space="preserve">fff-broker-1</text>
+      <text x="345.6592" font-size="12px" y="354.7139" clip-path="url(#clipPath2)" fill="black" stroke="none" xml:space="preserve">fff-broker-2</text>
+      <text x="345.6592" font-size="12px" y="404.7139" clip-path="url(#clipPath2)" fill="black" stroke="none" xml:space="preserve">fff-broker-3</text>
+      <text x="345.6592" font-size="12px" y="450.7139" clip-path="url(#clipPath2)" fill="black" stroke="none" xml:space="preserve">fff-broker-4</text>
       <text x="223.9883" font-size="12px" y="362.3633" clip-path="url(#clipPath2)" fill="black" stroke="none" xml:space="preserve">Confluent</text>
       <text x="223.9883" font-size="12px" y="377.0645" clip-path="url(#clipPath2)" fill="black" stroke="none" xml:space="preserve">Replicator</text>
       <text x="99.6533" font-size="12px" y="394.7139" clip-path="url(#clipPath2)" fill="black" stroke="none" xml:space="preserve">Internet</text>
