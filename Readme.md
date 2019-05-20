@@ -17,12 +17,111 @@ Tools such as confluent Repliator and Kafka Mirror maker can replicate topics an
 
 <img src="docs/images/Replicator-03.svg" />
 
-# Usage
+## Usage
 
 ## 1. Prerequisites
 
+* Running kafka clusters either on public/private cloud
+* VMs enabled with docker version 18 + and docker-compose version 3.0 +
+* VMs should have a publically accessibe public IP
+
 ## 2. Preperation
+
+Create a `setenv.sh` from the `setenv.sh.template` file
+
+```bash
+
+#
+# SOURCE_* represents the config setup to connect to the source side of the Repliator
+#
+
+export SOURCE_CLUSTER_ID=orange
+export SOURCE_BROKER_SERVERS=pkc-orange.us-east1.gcp.confluent.cloud:9092,b0-pkc-orange.us-east1.gcp.confluent.cloud:9092,b1-pkc-orange.us-east1.gcp.confluent.cloud:9092
+export SOURCE_API_KEY=srckee
+export SOURCE_API_SECRET=srcscrtsrcscrt
+
+
+
+#
+# Destination_* represents the config setup to connect to the destination side of the Repliator
+#
+
+export DESTINATION_CLUSTER_ID=grape
+export DESTINATION_BROKER_SERVERS=pkc-grape.us-west1.gcp.confluent.cloud:9092,b0-pkc-grape.us-west1.gcp.confluent.cloud:9092,b1-pkc-grape.us-west1.gcp.confluent.cloud:9092,b2-pkc-grape.us-west1.gcp.confluent.cloud:9092
+export DESTINATION_API_KEY=dstkee
+export DESTINATION_API_SECRET=dstscrtdstscrt
+
+
+# e.g All  topic names  matching eu.xaz.* will be replicated
+export REPLICA_TOPICS_SOURCE_REGEX=eu[.]xaz[.].*
+#  e.g.   eu.xaz.customerbillstopic from source  becomes  eu.xaz.customerbillstopic.copy in target cluster
+export REPLICA_TOPICS_DEST_SUFFIX=copy
+
+
+export SOURCE_SIDE_TUNNEL_IP=xxx.SOU.RCE.xIP
+export DESTINATION_SIDE_TUNNEL_IP=xxx.DES.TxI.Pxx
+
+```
+> Firewall ports will need to be opened - Read the output of following commands 
 
 ## 3-A. Setup at source VPC
 
+Run following commands on the VM peered with the `source` Kafka Cluster
+
+```bash
+# Replicate git
+> git clone <THIS GIT REPO> ~/workspace/kafka-cloud-replicator
+> cd ~/workspace/kafka-cloud-replicator
+# Create setenv.sh file here with the content from step 2
+> vi setenv.sh
+# Prepare the configuration
+> ./bin/prepare_src_config.sh
+```
+
+>  The output shows the Firewall ports that need to be open
+
+Run docker containers on the source
+
+```bash
+ > docker-compose up -d
+```
+
 ## 3-B. Setup at destination VPC
+
+Run following commands on the VM peered with the `destination` Kafka Cluster
+
+```bash
+# Replicate git
+> git clone <THIS GIT REPO> ~/workspace/kafka-cloud-replicator
+> cd ~/workspace/kafka-cloud-replicator
+# Create setenv.sh file here with the content from step 2
+> vi setenv.sh
+# Prepare the configuration
+> ./bin/prepare_dest_config.sh
+```
+
+>  The output shows the Firewall ports that need to be open
+
+Run docker containers on the source
+
+```bash
+ > docker-compose up -d
+```
+
+## 4. Testing
+
+If all goes well you should be able to see the connector with name `replicator-${source_cluster_id}` in the control center
+
+* Test for topic replication from source to target
+* Test for topic partition balancing between source and target
+* Test event propogation from source to target
+
+## Troubleshooting
+
+> docker-compose fail- ERROR: Pool overlaps with other one on this address space
+```bash
+# Clean networks
+docker network ls -q | xargs docker network rm
+# Retry
+docker-compose up -d
+```
