@@ -8,6 +8,7 @@ echo
 
 export DESTINATION_BOOTSTRAP_BROKER_URL=$(python -c "print(\"${DESTINATION_BROKER_SERVERS}\".split(',')[0])")
 export SOURCE_BOOTSTRAP_BROKER_URL=$(python -c "print(\"${SOURCE_BROKER_SERVERS}\".split(',')[0])")
+export DOLLAR='$'
 
 mkdir -p ${BASE_DIR}/config
 echo  Creating ${BASE_DIR}/config/producer.properties from template
@@ -15,6 +16,7 @@ envsubst < ${BASE_DIR}/template/producer.properties > ${BASE_DIR}/config/produce
 
 echo  Creating ${BASE_DIR}/config/consumer.properties from template
 envsubst < ${BASE_DIR}/template/consumer.properties > ${BASE_DIR}/config/consumer.properties
+
 
 echo  Creating ${BASE_DIR}/config/replication.properties from template
 envsubst < ${BASE_DIR}/template/replication.properties > ${BASE_DIR}/config/replication.properties
