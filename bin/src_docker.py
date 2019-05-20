@@ -21,6 +21,7 @@ for ix in range (len(broker_urls)):
     - -listen 
     - :9092 
     - -tunnels 
-    - "0"''')
+    - "0"
+    ''')
 print ("\n".join(out_str))
     
