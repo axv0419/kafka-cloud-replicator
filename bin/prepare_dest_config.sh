@@ -27,6 +27,5 @@ python3 ${BASE_DIR}/bin/dest_docker.py  > ${BASE_DIR}/docker-compose.yaml
 python3 ${BASE_DIR}/bin/instructions.py
 
 
-echo '-- Start replicator destination tunnel and Confluent Replicator'
-
-echo '-- cd ${BASE_DIR} ; docker-compose up -d'
+echo "-- Start replicator destination tunnel and Confluent Replicator"
+echo "-- cd ${BASE_DIR} ; docker-compose up -d"
