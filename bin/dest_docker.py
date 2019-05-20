@@ -5,7 +5,6 @@ src_cluster_id=os.environ['SOURCE_CLUSTER_ID']
 src_side_tunnel_ip=os.environ['SOURCE_SIDE_TUNNEL_IP']
 broker_urls=[item.strip() for item in os.environ['SOURCE_BROKER_SERVERS'].split(',')]
 
-
 out_str = ['''version: "3.0"
 services:''']
 for ix in range (len(broker_urls)):
