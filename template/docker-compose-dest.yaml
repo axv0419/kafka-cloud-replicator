@@ -1,0 +1,108 @@
+version: "3.0"
+services:
+  ${src_cluster_id}.${src_gcp_region}.gcp.confluent.cloud:
+    image: m7dock/gotunnel:01
+    container_name: ${src_gcp_region}-broker-bootstrap
+    networks:
+        tunnel_net:
+            ipv4_address: 172.28.1.1
+    entrypoint:
+    - /work/gotunnel
+    - -backend
+    - ${tunnel_out_ip}:15060
+    - -listen 
+    - :9092 
+    - -tunnels 
+    - "3" 
+  b0-${src_cluster_id}.${src_gcp_region}.gcp.confluent.cloud:
+    image: m7dock/gotunnel:01
+    container_name: ${src_gcp_region}-broker-proxy-b0
+    networks:
+        tunnel_net:
+            ipv4_address: 172.28.1.10
+    entrypoint:
+    - /work/gotunnel
+    - -backend
+    - ${tunnel_out_ip}:15070
+    - -listen 
+    - :9092 
+    - -tunnels 
+    - "3" 
+  b1-${src_cluster_id}.${src_gcp_region}.gcp.confluent.cloud:
+    image: m7dock/gotunnel:01
+    container_name: ${src_gcp_region}-broker-proxy-b1
+    networks:
+        tunnel_net:
+            ipv4_address: 172.28.1.11
+    entrypoint:
+    - /work/gotunnel
+    - -backend
+    - ${tunnel_out_ip}:15071
+    - -listen 
+    - :9092 
+    - -tunnels 
+    - "3" 
+  b2-${src_cluster_id}.${src_gcp_region}.gcp.confluent.cloud:
+    image: m7dock/gotunnel:01
+    container_name: ${src_gcp_region}-broker-proxy-b2
+    networks:
+        tunnel_net:
+            ipv4_address: 172.28.1.12
+    entrypoint:
+    - /work/gotunnel
+    - -backend
+    - ${tunnel_out_ip}:15072
+    - -listen 
+    - :9092 
+    - -tunnels 
+    - "3" 
+  b3-${src_cluster_id}.${src_gcp_region}.gcp.confluent.cloud:
+    image: m7dock/gotunnel:01
+    container_name: ${src_gcp_region}-broker-proxy-b3
+    networks:
+        tunnel_net:
+            ipv4_address: 172.28.1.13
+    entrypoint:
+    - /work/gotunnel
+    - -backend
+    - ${tunnel_out_ip}:15073
+    - -listen 
+    - :9092 
+    - -tunnels 
+    - "3" 
+  b4-${src_cluster_id}.${src_gcp_region}.gcp.confluent.cloud:
+    image: m7dock/gotunnel:01
+    container_name: ${src_gcp_region}-broker-proxy-b4
+    networks:
+        tunnel_net:
+            ipv4_address: 172.28.1.14
+    entrypoint:
+    - /work/gotunnel
+    - -backend
+    - ${tunnel_out_ip}:15074
+    - -listen 
+    - :9092 
+    - -tunnels 
+    - "3" 
+  ${src_cluster_id}.replicator:
+    image: confluentinc/cp-enterprise-replicator-executable:5.2.1
+    container_name: ${src_cluster_id}-replicator
+    networks:
+        tunnel_net:
+            ipv4_address: 172.28.1.34
+    environment: 
+      - REPLICATOR_LOG4J_ROOT_LOGLEVEL=DEBUG
+    volumes:
+      - ./config:/etc/replicator
+  cc-cli:
+    image: av/ccloud
+    container_name: ccloud
+    networks:
+        tunnel_net:
+            ipv4_address: 172.28.1.30      
+networks:
+    tunnel_net:
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.28.0.0/16

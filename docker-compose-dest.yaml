@@ -1,0 +1,66 @@
+version: "3.0"
+services:
+  pkc-orange.us-east1.gcp.confluent.cloud:
+    image: m7dock/gotunnel:01
+    container_name: broker-proxy-0
+    networks:
+        tunnel_net:
+            ipv4_address: 172.28.1.0
+    entrypoint:
+    - /work/gotunnel
+    - -backend
+    - XXX.XXX.XXX.XXX:15060
+    - -listen 
+    - :9092 
+    - -tunnels 
+    - "3"
+  b0-pkc-orange.us-east1.gcp.confluent.cloud:
+    image: m7dock/gotunnel:01
+    container_name: broker-proxy-1
+    networks:
+        tunnel_net:
+            ipv4_address: 172.28.1.1
+    entrypoint:
+    - /work/gotunnel
+    - -backend
+    - XXX.XXX.XXX.XXX:15062
+    - -listen 
+    - :9092 
+    - -tunnels 
+    - "3"
+  b1-pkc-orange.us-east1.gcp.confluent.cloud:
+    image: m7dock/gotunnel:01
+    container_name: broker-proxy-2
+    networks:
+        tunnel_net:
+            ipv4_address: 172.28.1.2
+    entrypoint:
+    - /work/gotunnel
+    - -backend
+    - XXX.XXX.XXX.XXX:15064
+    - -listen 
+    - :9092 
+    - -tunnels 
+    - "3"
+  orange.replicator:
+    image: confluentinc/cp-enterprise-replicator-executable:5.2.1
+    container_name: orange-replicator
+    networks:
+        tunnel_net:
+            ipv4_address: 172.28.1.54
+    environment: 
+      - REPLICATOR_LOG4J_ROOT_LOGLEVEL=DEBUG
+    volumes:
+      - ./config:/etc/replicator
+  cc-cli:
+    image: av/ccloud
+    container_name: ccloud
+    networks:
+        tunnel_net:
+            ipv4_address: 172.28.1.30      
+networks:
+    tunnel_net:
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.28.0.0/16

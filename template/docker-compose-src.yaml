@@ -1,0 +1,81 @@
+version: "3.0"
+services:
+  kafka-boot-broker-a:
+    image: m7dock/gotunnel:01
+    container_name: kafka-boot-broker-a
+    ports:
+      - 15060:9092
+    entrypoint:
+    - /work/gotunnel
+    - -backend
+    - ${src_cluster_id}.${src_gcp_region}.gcp.confluent.cloud:9092
+    - -listen 
+    - :9092 
+    - -tunnels 
+    - "0" 
+  kafka-boot-broker-b0:
+    image: m7dock/gotunnel:01
+    container_name: kafka-boot-broker-b0
+    ports:
+      - 15070:9092
+    entrypoint:
+    - /work/gotunnel
+    - -backend
+    - b0-${src_cluster_id}.${src_gcp_region}.gcp.confluent.cloud:9092
+    - -listen 
+    - :9092 
+    - -tunnels 
+    - "0" 
+  kafka-boot-broker-b1:
+    image: m7dock/gotunnel:01
+    container_name: kafka-boot-broker-b1
+    ports:
+      - 15071:9092
+    entrypoint:
+    - /work/gotunnel
+    - -backend
+    - b1-${src_cluster_id}.${src_gcp_region}.gcp.confluent.cloud:9092
+    - -listen 
+    - :9092 
+    - -tunnels 
+    - "0" 
+  kafka-boot-broker-b2:
+    image: m7dock/gotunnel:01
+    container_name: kafka-boot-broker-b2
+    ports:
+      - 15072:9092
+    entrypoint:
+    - /work/gotunnel
+    - -backend
+    - b2-${src_cluster_id}.${src_gcp_region}.gcp.confluent.cloud:9092
+    - -listen 
+    - :9092 
+    - -tunnels 
+    - "0" 
+  kafka-boot-broker-b3:
+    image: m7dock/gotunnel:01
+    container_name: kafka-boot-broker-b3
+    ports:
+      - 15073:9092
+    entrypoint:
+    - /work/gotunnel
+    - -backend
+    - b3-${src_cluster_id}.${src_gcp_region}.gcp.confluent.cloud:9092
+    - -listen 
+    - :9092 
+    - -tunnels 
+    - "0" 
+  kafka-boot-broker-b4:
+    image: m7dock/gotunnel:01
+    container_name: kafka-boot-broker-b4
+    ports:
+      - 15074:9092
+    entrypoint:
+    - /work/gotunnel
+    - -backend
+    - b4-${src_cluster_id}.${src_gcp_region}.gcp.confluent.cloud:9092
+    - -listen 
+    - :9092 
+    - -tunnels 
+    - "0" 
+

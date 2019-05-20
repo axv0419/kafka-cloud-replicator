@@ -1,0 +1,41 @@
+version: "3.0"
+services:
+  kafka-boot-broker-0:
+    image: m7dock/gotunnel:01
+    container_name: kafka-boot-broker-0
+    ports:
+      - 15060:9092
+    entrypoint:
+    - /work/gotunnel
+    - -backend
+    - pkc-orange.us-east1.gcp.confluent.cloud:9092
+    - -listen 
+    - :9092 
+    - -tunnels 
+    - "0"
+  kafka-boot-broker-1:
+    image: m7dock/gotunnel:01
+    container_name: kafka-boot-broker-1
+    ports:
+      - 15062:9092
+    entrypoint:
+    - /work/gotunnel
+    - -backend
+    - b0-pkc-orange.us-east1.gcp.confluent.cloud:9092
+    - -listen 
+    - :9092 
+    - -tunnels 
+    - "0"
+  kafka-boot-broker-2:
+    image: m7dock/gotunnel:01
+    container_name: kafka-boot-broker-2
+    ports:
+      - 15064:9092
+    entrypoint:
+    - /work/gotunnel
+    - -backend
+    - b1-pkc-orange.us-east1.gcp.confluent.cloud:9092
+    - -listen 
+    - :9092 
+    - -tunnels 
+    - "0"
