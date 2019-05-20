@@ -9,6 +9,6 @@ ports = [15060 + (ix*2)  for ix in range (len(broker_urls))]
 
 print(f'''
 Using GCP Admin console  open firewall on {tgt_side_tunnel_ip} for inbound traffic from {src_side_tunnel_ip} on ports {ports}
-''')
+''' )
 
 
