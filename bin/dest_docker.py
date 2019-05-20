@@ -34,7 +34,12 @@ out_str.append('''  {src_cluster_id}.replicator:
         tunnel_net:
             ipv4_address: 172.28.1.54
     environment: 
-      - REPLICATOR_LOG4J_ROOT_LOGLEVEL=DEBUG
+      - REPLICATOR_LOG4J_ROOT_LOGLEVEL=WARN
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "4"
     volumes:
       - ./config:/etc/replicator
   cc-cli:
