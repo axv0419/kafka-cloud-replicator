@@ -29,4 +29,4 @@ python3 ${BASE_DIR}/bin/instructions.py
 
 echo '-- Start replicator destination tunnel and Confluent Replicator'
 
-echo '-- cd ${BASE_DIR} ; docker-compose up -d"
+echo '-- cd ${BASE_DIR} ; docker-compose up -d'
