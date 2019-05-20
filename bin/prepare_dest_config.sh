@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BASE_DIR="$( cd "$(dirname "$0")"; pwd -P )"
+BASE_DIR="$( cd "$(dirname "$0")/.."; pwd -P )"
 echo 
 echo "Using base directory $BASE_DIR"
 . ${BASE_DIR}/setenv.sh
