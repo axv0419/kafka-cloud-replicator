@@ -12,7 +12,7 @@ for ix in range (len(broker_urls)):
     broker_url = broker_urls[ix]
     broker_host ,broker_port=broker_url.split(":")
     port = 15060 + (ix*2)
-    out_str.append(f'''  {broker_host}:
+    out_str.append('''  {broker_host}:
     image: m7dock/gotunnel:01
     container_name: broker-proxy-{ix}
     networks:
@@ -25,7 +25,7 @@ for ix in range (len(broker_urls)):
     - -listen 
     - :9092 
     - -tunnels 
-    - "3"''')
+    - "3"'''.format(port=port,ix=ix,borker_host=broker_host,src_side_tunnel_ip=src_side_tunnel_ip))
 
 out_str.append(f'''  {src_cluster_id}.replicator:
     image: confluentinc/cp-enterprise-replicator-executable:5.2.1
