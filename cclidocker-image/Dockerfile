@@ -6,7 +6,11 @@ RUN apk update && apk upgrade && \
 RUN mkdir /work
 WORKDIR  /work
 VOLUME  /cfg
-ADD ccloud-0.2.1 ccloud-0.2.1
-ADD .ccloud /root/.ccloud
 
-ENTRYPOINT [ "/work/ccloud-0.2.1/bin/ccloud" ]
+RUN mkdir -p /tmp
+COPY ./ccloud-latest.tar.gz /tmp
+RUN mkdir -p /app && \
+    cd /app && tar xzf /tmp/ccloud-latest.tar.gz 
+
+
+ENTRYPOINT [ "/app/ccloud-0.2.1/bin/ccloud" ]
