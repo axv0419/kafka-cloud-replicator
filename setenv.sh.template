@@ -2,7 +2,7 @@
 # SOURCE_* represents the config setup to connect to the source side of the Repliator
 #
 
-export SOURCE_CLUSTER_ID=orange
+export SOURCE_CLUSTER_ID=orange 
 export SOURCE_BROKER_SERVERS=pkc-orange.us-east1.gcp.confluent.cloud:9092,b0-pkc-orange.us-east1.gcp.confluent.cloud:9092,b1-pkc-orange.us-east1.gcp.confluent.cloud:9092
 export SOURCE_API_KEY=srckee
 export SOURCE_API_SECRET=srcscrtsrcscrt

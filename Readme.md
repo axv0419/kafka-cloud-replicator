@@ -27,7 +27,16 @@ Tools such as confluent Repliator and Kafka Mirror maker can replicate topics an
 
 ## 2. Preperation
 
-Create a `setenv.sh` from the `setenv.sh.template` file
+Create the project folder 
+
+```bash
+# Create project directory
+> git clone <THIS GIT REPO> ~/workspace/kafka-cloud-replicator
+> cd ~/workspace/kafka-cloud-replicator
+# Create setenv.sh file here with the content from step 2
+```
+
+Create a `~/workspace/kafka-cloud-replicator/setenv.sh` from the `setenv.sh.template` file in the project folder
 
 ```bash
 
@@ -58,21 +67,19 @@ export REPLICA_TOPICS_SOURCE_REGEX=eu[.]xaz[.].*
 export REPLICA_TOPICS_DEST_SUFFIX=copy
 
 
-export SOURCE_SIDE_TUNNEL_IP=xxx.SOU.RCE.xIP
-export DESTINATION_SIDE_TUNNEL_IP=xxx.DES.TxI.Pxx
+export SOURCE_SIDE_TUNNEL_IP=433.34.23.45
+export DESTINATION_SIDE_TUNNEL_IP=476.34.23.45
 
 ```
-> Firewall ports will need to be opened - Read the output of following commands 
+> Firewall ports will need to be opened - Read the output of following commands. 
 
 ## 3-A. Setup at source VPC
 
 Run following commands on the VM peered with the `source` Kafka Cluster
 
 ```bash
-# Replicate git
-> git clone <THIS GIT REPO> ~/workspace/kafka-cloud-replicator
 > cd ~/workspace/kafka-cloud-replicator
-# Create setenv.sh file here with the content from step 2
+# edit the setenv.sh
 > vi setenv.sh
 # Prepare the configuration
 > ./bin/prepare_src_config.sh
@@ -83,7 +90,7 @@ Run following commands on the VM peered with the `source` Kafka Cluster
 Run docker containers on the source
 
 ```bash
- > docker-compose up -d
+> docker-compose up -d
 ```
 
 ## 3-B. Setup at destination VPC
@@ -100,7 +107,7 @@ Run following commands on the VM peered with the `destination` Kafka Cluster
 > ./bin/prepare_dest_config.sh
 ```
 
->  The output shows the Firewall ports that need to be open
+> The output shows the Firewall ports that need to be open
 
 Run docker containers on the source
 
