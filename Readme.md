@@ -1,19 +1,25 @@
 ## Kakfa Cloud Replicator
 
-Kafka clusters provide reliable event ingestion and processing within a cloud VPC region however some applcations need to replicate topics securely and effectively between Kafka Clusters running in different cloud VPC regions.
+Kafka clusters provide very reliable and high performant messaging backbone by means of clustered brokers, partitioned topics and replicated partitions.Kafka clusters are most efficient when all brokers reside in the same physical data center or same compute region in a cloud. However many global businesses need a messaging backbone which spans across geographic regions. A single Kafka cluster spanning over WAN is not an ideal solution. A better solution is to have a Kafka cluster in each geographic region and link those clusters via a high bandwidth replicator.
 
 <img src="docs/images/Replicator-01.svg" />
 
-
-Tools such as confluent Repliator and Kafka Mirror maker can replicate topics and events across multi datacenter Kafka deployments. However there are few challenges.
+Tools such as confluent Repliator and Kafka Mirror maker can replicate topics and events across multi datacenter Kafka deployments. However there are few challenges related to secure __network connectivity__ and __broker host discovery__ which need to be addressed to enable these replicaiton solutions. This project aims to adress these challenges and provide a viable solution for creating Kafka inter cluster connection.
 
 ## Challenges
 
-1. _Broker visibility_ : The kafka broker hosts are typically protected by a firewall and are not exposed on the internet. The Kafka services are used from a peered local VPC. Replicator is a Kafka Client program and like a typical Kafka client it needs to be able to establish connection to all the broker servers on both the source and target clusters.
-2. _Hostname lookup requirements_ : SASL security imposes the requirement that the client name should be able to lookup and connect to Brokers by using their specified FQDNs which appear in the Client <-> Kafka Cluster connection handshake.
+1. _Broker connectivity_ : The kafka broker hosts are typically protected by a firewall and are not exposed on the internet. The Kafka services are used from a peered local VPC. Replicator is a Kafka Client program and like a typical Kafka client it needs to be able to establish connection to all the broker servers on both the source and target clusters.
+2. _Broker hostname resolution_ : SASL security imposes the requirement that the client name should be able to lookup and connect to Brokers by using their specified FQDNs which appear in the Client <-> Kafka Cluster connection handshake.
 
 ## Extending VPC via secure TCP tunnel
+
+This project relies on secure and highly performant TCP tunnels achieved by running the gotunnel - https://github.com/xjdrew/gotunnel.git.
+
+
 <img src="docs/images/Replicator-02.svg" />
+
+
+The setup enables a Kafka Client to securely establish TCP connections with __all__ the brokers running in remote kafka cluster and access them as if they are available locally.
 
 <img src="docs/images/Replicator-03.svg" />
 
@@ -21,22 +27,26 @@ Tools such as confluent Repliator and Kafka Mirror maker can replicate topics an
 
 ## 1. Prerequisites
 
-* Running kafka clusters either on public/private cloud
-* VMs enabled with docker version 18 + and docker-compose version 3.0 +
-* VMs should have a publically accessibe public IP
+* Two Running kafka cluster instances in GCP cloud. 
+* VMs enabled with docker version 18 + and docker-compose version 3.0 + , running in a Peered VPC local to each of hte kafka clustes.
+* VMs should have mutually resolvable public IP addresses.
+* Firewall ports need to be opened on source VPC such that the destination VM can establish connections with the source VM. The ports that need to be opened are displayed on the console after running the below steps.
 
 ## 2. Preperation
 
-Create the project folder 
+> Note this step applies to both VMs
+
+Create the project folder with a name indicating the replication direction  `~/workspace/kafka-cloud-replicator-{SRC}-{DEST}` e.g  folder name `~/workspace/kafka-cloud-replicator-eu-la`
 
 ```bash
 # Create project directory
-> git clone <THIS GIT REPO> ~/workspace/kafka-cloud-replicator
-> cd ~/workspace/kafka-cloud-replicator
+> export PROJECT_FOLDER=~/workspace/kafka-cloud-replicator-eu-la
+> git clone <THIS GIT REPO> ${PROJECT_FOLDER}
+> cd ${PROJECT_FOLDER}
 # Create setenv.sh file here with the content from step 2
 ```
 
-Create a `~/workspace/kafka-cloud-replicator/setenv.sh` from the `setenv.sh.template` file in the project folder
+Create a env setup file `${PROJECT_FOLDER}/setenv.sh` from the `setenv.sh.template`.
 
 ```bash
 
