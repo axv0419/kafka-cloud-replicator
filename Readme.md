@@ -88,7 +88,7 @@ export DESTINATION_SIDE_TUNNEL_IP=476.34.23.45
 Run following commands on the VM peered with the `source` Kafka Cluster
 
 ```bash
-> cd ~/workspace/kafka-cloud-replicator
+> cd ${PROJECT_FOLDER}
 # edit the setenv.sh
 > vi setenv.sh
 # Prepare the configuration
@@ -109,8 +109,7 @@ Run following commands on the VM peered with the `destination` Kafka Cluster
 
 ```bash
 # Replicate git
-> git clone <THIS GIT REPO> ~/workspace/kafka-cloud-replicator
-> cd ~/workspace/kafka-cloud-replicator
+> cd ${PROJECT_FOLDER}
 # Create setenv.sh file here with the content from step 2
 > vi setenv.sh
 # Prepare the configuration
