@@ -79,7 +79,8 @@ export REPLICA_TOPICS_DEST_SUFFIX=copy
 
 export SOURCE_SIDE_TUNNEL_IP=433.34.23.45
 export DESTINATION_SIDE_TUNNEL_IP=476.34.23.45
-
+## -- Shared Secret for enabling trust between two ends of the tunnel
+export SHARED_SECRET='list here have high-quality instruction and are priced appropriately'
 ```
 > Firewall ports will need to be opened - Read the output of following commands. 
 

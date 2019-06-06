@@ -27,3 +27,5 @@ export REPLICA_TOPICS_DEST_SUFFIX=copy
 
 export SOURCE_SIDE_TUNNEL_IP=xxx.SOU.RCE.xIP
 export DESTINATION_SIDE_TUNNEL_IP=xxx.DES.TxI.Pxx
+## -- Shared Secret for enabling trust between two ends of the tunnel
+export SHARED_SECRET='list here have high-quality instruction and are priced appropriately'
